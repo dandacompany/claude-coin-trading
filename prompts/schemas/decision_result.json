@@ -1,0 +1,48 @@
+{
+  "type": "object",
+  "properties": {
+    "timestamp": { "type": "string", "description": "ISO 8601 형식 시각" },
+    "decision": { "type": "string", "enum": ["매수", "매도", "관망"] },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "reason": { "type": "string", "minLength": 50, "description": "결정 근거 요약 (한국어)" },
+    "market_analysis": {
+      "type": "object",
+      "properties": {
+        "trend": { "type": "string", "enum": ["상승", "하락", "횡보"] },
+        "fear_greed": {
+          "type": "object",
+          "properties": {
+            "value": { "type": "integer", "minimum": 0, "maximum": 100 },
+            "classification": { "type": "string" }
+          },
+          "required": ["value", "classification"]
+        },
+        "rsi": { "type": "number" },
+        "sma20_deviation": { "type": "string", "description": "SMA20 대비 이탈률 (예: -5.2%)" },
+        "news_sentiment": { "type": "string", "enum": ["매우긍정", "긍정", "중립", "부정", "매우부정"] },
+        "key_factors": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "결정에 영향을 준 핵심 요인 3~5개"
+        }
+      },
+      "required": ["trend", "fear_greed", "rsi", "sma20_deviation", "news_sentiment", "key_factors"]
+    },
+    "trade_details": {
+      "type": "object",
+      "properties": {
+        "side": { "type": ["string", "null"], "enum": ["bid", "ask", null] },
+        "amount": { "type": ["number", "null"], "description": "매매 금액 (KRW) 또는 수량 (BTC)" },
+        "executed": { "type": "boolean" }
+      },
+      "required": ["side", "amount", "executed"]
+    },
+    "feedback_applied": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "이번 실행에 반영한 피드백 ID 목록"
+    },
+    "next_check_recommendation": { "type": "string", "description": "다음 점검 권장 시간" }
+  },
+  "required": ["timestamp", "decision", "confidence", "reason", "market_analysis", "trade_details"]
+}
