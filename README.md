@@ -62,7 +62,7 @@ bash <(curl -sL https://trading.dante-labs.com/coin/install.sh)
 ### 수동 설치
 
 ```bash
-git clone https://github.com/dante-labs/claude-coin-trading.git
+git clone https://github.com/dandacompany/claude-coin-trading.git
 cd claude-coin-trading
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt

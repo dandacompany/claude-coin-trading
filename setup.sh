@@ -68,7 +68,7 @@ if [ -d "$PROJECT_DIR" ]; then
 fi
 
 # ── 저장소 클론 ─────────────────────────────────────────
-REPO_URL="https://github.com/dante-labs/claude-coin-trading.git"
+REPO_URL="https://github.com/dandacompany/claude-coin-trading.git"
 
 info "저장소를 복제합니다..."
 git clone --depth 1 "$REPO_URL" "$PROJECT_DIR" 2>/dev/null \
