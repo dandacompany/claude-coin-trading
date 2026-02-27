@@ -103,12 +103,6 @@ fi
 cp .env.example .env
 ok ".env 파일 생성 완료"
 
-# ── git 초기화 ──────────────────────────────────────────
-git init -q
-git add -A
-git commit -q -m "Initial setup: Claude 암호화폐 자동매매 시스템"
-ok "git 저장소 초기화 완료"
-
 # ── 스크립트 실행 권한 ────────────────────────────────────
 chmod +x scripts/cron_run.sh scripts/setup_cron.sh scripts/run_analysis.sh 2>/dev/null || true
 ok "스크립트 실행 권한 설정 완료"
